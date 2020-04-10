@@ -1,19 +1,26 @@
 import React from 'react';
-import useScroll from 'hooks/useScroll';
+import Plx from 'react-plx';
 
-const Parallaxed = ({ style, children, initialOffset = 0, ...props }) => {
-  const scrollY = useScroll();
-
+const Parallaxed = ({ children, ...props }) => {
   return (
-    <div
-      style={{
-        transform: `translateY(${(scrollY - initialOffset) / 14}px)`,
-        ...style
-      }}
-      {...props}
+    <Plx
+      parallaxData={[
+        {
+          start: 0,
+          duration: 1000,
+          properties: [
+            {
+              startValue: 0,
+              endValue: 100,
+              property: 'translateY'
+            }
+          ],
+          ...props
+        }
+      ]}
     >
       {children}
-    </div>
+    </Plx>
   );
 };
 

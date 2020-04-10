@@ -73,6 +73,11 @@ const HeroBackground = (() => {
   const TopBall = styled(FrontBall).attrs(() => ({
     size: '212px'
   }))`
+    position: static;
+  `;
+
+  const TopBallPos = styled.div`
+    position: absolute;
     top: -23px;
     left: -159px;
   `;
@@ -80,6 +85,11 @@ const HeroBackground = (() => {
   const SmallBall = styled(FrontBall).attrs(() => ({
     size: '86px'
   }))`
+    position: static;
+  `;
+
+  const SmallBallPos = styled.div`
+    position: absolute;
     top: 327px;
     right: 89px;
   `;
@@ -107,10 +117,16 @@ const HeroBackground = (() => {
         <SmallBlurryBall />
         <DimGiantBall />
         <DimBall />
-        <Parallaxed style={{ position: 'static' }}>
-          <TopBall />
-          <SmallBall />
-        </Parallaxed>
+        <TopBallPos>
+          <Parallaxed>
+            <TopBall />
+          </Parallaxed>
+        </TopBallPos>
+        <SmallBallPos>
+          <Parallaxed>
+            <SmallBall />
+          </Parallaxed>
+        </SmallBallPos>
       </Box>
     </FullWidth>
   );
@@ -223,12 +239,13 @@ function Borrow() {
             url={`/${Routes.BORROW}/2434`}
             quotesImg={<QuotesImg />}
           >
-            <Parallaxed
-              initialOffset="1388"
-              style={{ position: 'absolute', bottom: '78px', right: '70px' }}
+            <div
+              style={{ position: 'absolute', bottom: '-36px', right: '-110px' }}
             >
-              <FrontBall size="180px" />
-            </Parallaxed>
+              <Parallaxed start={450}>
+                <FrontBall size="180px" style={{ position: 'static' }} />
+              </Parallaxed>
+            </div>
           </StyledQuotesBox>
         </FadeIn>
       </GradientBox>
